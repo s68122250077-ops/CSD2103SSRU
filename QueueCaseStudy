@@ -1,0 +1,53 @@
+package src;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class QueueCaseStudy {
+    public static void main(String[] args) {
+        Queue<String> patientQueue = new LinkedList<>();
+
+        // 1. เพิ่มผู้ป่วย P001 ถึง P005 ลงใน Queue
+        patientQueue.add("P001");
+        patientQueue.add("P002");
+        patientQueue.add("P003");
+        patientQueue.add("P004");
+        patientQueue.add("P005");
+        System.out.println("=== ระบบคิวผู้ป่วย (Queue) ===");
+        System.out.println("1. เริ่มต้นเพิ่มผู้ป่วย P001 - P005 เข้าคิว: " + patientQueue);
+
+        // 2. เรียกผู้ป่วยออกจากคิว 2 คน (P001 และ P002 ได้รับบริการ)
+        System.out.println("\n--- เรียกผู้ป่วยเข้ารับบริการ 2 คน ---");
+        for (int i = 1; i <= 2; i++) {
+            // 7. ตรวจสอบก่อน remove() ว่า Queue ว่างหรือไม่
+            if (!patientQueue.isEmpty()) {
+                String servedPatient = patientQueue.remove();
+                System.out.println("ผู้ป่วย " + servedPatient + " เข้ารับบริการเรียบร้อย");
+            } else {
+                System.out.println("ไม่มีผู้ป่วยอยู่ในคิว");
+            }
+        }
+
+        // 3. เพิ่มผู้ป่วย P006 และ P007 เข้า Queue
+        patientQueue.add("P006");
+        patientQueue.add("P007");
+        System.out.println("\n3. มีผู้ป่วยใหม่ (P006, P007) มาลงทะเบียนเพิ่ม");
+
+        // 4. แสดงผู้ป่วยคนถัดไปด้วย peek()
+        if (!patientQueue.isEmpty()) {
+            System.out.println("4. ผู้ป่วยคนถัดไปที่จะถูกเรียก (peek): " + patientQueue.peek());
+        }
+
+        // 5. แสดงจำนวนผู้ป่วยที่ยังรออยู่ด้วย size()
+        System.out.println("5. จำนวนผู้ป่วยที่ยังรออยู่ปัจจุบัน (size): " + patientQueue.size() + " คน");
+
+        // 6. แสดงสถานะของ Queue หลังจากดำเนินการทั้งหมด
+        System.out.println("6. สถานะของ Queue ล่าสุด: " + patientQueue);
+
+        // 8. อธิบายหลักการ FIFO
+        System.out.println("\n8. อธิบายหลักการ FIFO:");
+        System.out.println("> Queue ทำงานแบบ FIFO (First-In, First-Out) คือ ข้อมูลที่เข้ามาในคิวก่อน");
+        System.out.println("> (เช่น P001 และ P002) จะถูกนำออกจากคิวเพื่อไปประมวลผลก่อน ตามลำดับการเข้าคิวจริง");
+        System.out.println("> เหมือนการต่อแถวซื้อของทั่วไป เพื่อให้เกิดความยุติธรรมสูงสุดครับ");
+    }
+}
