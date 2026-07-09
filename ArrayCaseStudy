@@ -1,0 +1,46 @@
+package src;
+
+public class ArrayCaseStudy {
+    public static void main(String[] args) {
+        // ข้อมูลคะแนนสอบของนักศึกษา 10 คน
+        int[] scores = {6, 8, 4, 9, 7, 5, 10, 3, 8, 2};
+
+        // 1. หาคะแนนรวม
+        int sum = 0;
+        int max = scores[0];
+        int min = scores[0];
+        int countPassed = 0;
+
+        for (int score : scores) {
+            sum += score; // คะแนนรวม
+            if (score > max) max = score; // คะแนนสูงสุด
+            if (score < min) min = score; // คะแนนต่ำสุด
+            if (score >= 7) countPassed++; // คะแนนตั้งแต่ 7 ขึ้นไป
+        }
+
+        // 2. หาคะแนนเฉลี่ย
+        double average = (double) sum / scores.length;
+
+        // แสดงผลลัพธ์
+        System.out.println("=== ผลการวิเคราะห์คะแนนสอบ (Array) ===");
+        System.out.println("1. คะแนนรวมของนักศึกษาทั้งหมด: " + sum + " คะแนน");
+        System.out.printf("2. คะแนนเฉลี่ย: %.2f คะแนน\n", average);
+        System.out.println("3. คะแนนสูงสุด: " + max + " คะแนน");
+        System.out.println("4. คะแนนต่ำสุด: " + min + " คะแนน");
+        System.out.println("5. จำนวนนักศึกษาที่ได้คะแนนตั้งแต่ 7 คะแนนขึ้นไป: " + countPassed + " คน");
+
+        // 6. รายชื่อนักศึกษาที่ควรได้รับการทบทวนเพิ่มเติม (คะแนนต่ำกว่า 5)
+        System.out.print("6. นักศึกษาที่ควรได้รับการทบทวนเพิ่มเติม (คะแนน < 5): ");
+        boolean first = true;
+        for (int i = 0; i < scores.length; i++) {
+            if (scores[i] < 5) {
+                if (!first) {
+                    System.out.print(", ");
+                }
+                System.out.print("นักศึกษาคนที่ " + (i + 1) + " (ได้ " + scores[i] + " คะแนน)");
+                first = false;
+            }
+        }
+        System.out.println();
+    }
+}
