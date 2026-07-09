@@ -1,0 +1,41 @@
+package src;
+
+import java.util.Stack;
+
+public class StackCaseStudy {
+    public static void main(String[] args) {
+        Stack<String> undoStack = new Stack<>();
+
+        // 1. เพิ่มคำสั่งทั้งหมดลงใน Stack
+        undoStack.push("Type Data");
+        undoStack.push("Type Structure");
+        undoStack.push("Delete Structure");
+        undoStack.push("Type Algorithm");
+        undoStack.push("Type Java");
+
+        // 2. แสดงคำสั่งทั้งหมดใน Stack
+        System.out.println("=== ระบบ Undo ด้วย Stack ===");
+        System.out.println("1 & 2. คำสั่งทั้งหมดใน Stack: " + undoStack);
+
+        // 3 & 4. Undo คำสั่งล่าสุด 2 ครั้ง และแสดงคำสั่งที่ถูก Undo
+        System.out.println("\n--- เริ่มทำการ Undo 2 ครั้ง ---");
+        for (int i = 1; i <= 2; i++) {
+            // 6. ตรวจสอบก่อน pop() ว่า Stack ว่างหรือไม่
+            if (!undoStack.isEmpty()) {
+                String poppedCommand = undoStack.pop();
+                System.out.println("Undo ครั้งที่ " + i + ": ยกเลิกคำสั่ง -> \"" + poppedCommand + "\"");
+            } else {
+                System.out.println("ไม่สามารถ Undo ได้เนื่องจาก Stack ว่าง");
+            }
+        }
+
+        // 5. แสดงสถานะของ Stack หลังจาก Undo
+        System.out.println("\n5. สถานะของ Stack หลังจาก Undo ล่าสุด: " + undoStack);
+
+        // 7. อธิบายหลักการ LIFO
+        System.out.println("\n7. อธิบายหลักการ LIFO:");
+        System.out.println("> Stack ทำงานแบบ LIFO (Last-In, First-Out) คือ ข้อมูลที่ถูกเพิ่มเข้าไปทีหลังสุด");
+        System.out.println("> (ในที่นี้คือ \"Type Java\") จะเป็นข้อมูลชิ้นแรกที่ถูกนำออกมาก่อน (pop) เสมอ");
+        System.out.println("> เปรียบเสมือนการซ้อนจาน ใบที่วางบนสุดจะถูกหยิบออกไปก่อนครับ");
+    }
+}
